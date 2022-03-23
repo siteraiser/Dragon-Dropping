@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Droppings</title>
+<style>
+body{ box-sizing: border-box;}
+
+.drop-targets {    
+	width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.box {
+   width: 100%;
+    border: solid 3px #ccc;
+    margin: 10px;
+	min-height:10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.item{
+min-height:3px;
+ transition: all 0.5s ease-out;
+}
+.box:hover .item{
+    border: solid 1px #ccc;
+    margin: 3px;
+}
+
+.placement { 
+	box-sizing: border-box;
+	width: auto;
+    background-color:#61ff2d;
+	min-height:0px;
+	display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.placement.whiledragging {
+	min-height:5px;min-width:5px;  
+}
+
+.hide + .placement {
+	min-height:0px; min-width:0px;
+}
+
+.item.whiledragging {
+	min-height:10px;   
+    background-color: aliceblue;
+	box-shadow: inset 0 0 5px #00f;
+	padding:3px;
+}
+
+.item.hoveringhighlight{ box-shadow: inset 0 0 10px #0f0;}
+
+.drag-over {
+    border: dashed 3px red;
+}
+
+.hide{
+ display:none;
+}
+</style>
+</head>
+
+<body>
+
+    <h1>Dragon Droppings</h1>
+    <div class="drop-targets">
+        <div class="box">
+            <div draggable="true" class="item" id="i1">
+				<p>lol</p>
+			</div>
+				
+			<div draggable="true" class="item" id="i4">
+				<p>lol <span>2</span>
+				</p>
+			</div>
+        </div>
+			
+        <div class="box">
+			<div draggable="true" class="item" id="i2">lol 2.5
+			</div>			
+        </div>
+		<div class="box">
+			<div draggable="true" class="item" id="i3">lol 3
+			</div>
+        </div>
+		<div class="box"></div>
+	</div>
+		
+    <div class="drop-targets">
+        <div class="box">
+            <div draggable="true" class="item" id="i5">
+				<p>lol</p>
+            </div>
+				
+			<div draggable="true" class="item" id="i6">
+			<p>lol <span>2</span>
+			</p>
+			</div>
+        </div>
+			
+        <div class="box">
+			<div draggable="true" class="item" id="i7">
+			</div>		
+        </div>
+		<div class="box">
+			<div draggable="true" class="item" id="i8">lol 3
+			</div>
+        </div>
+
+
+	</div>		
+		
+		
+<script>
+
+function addPositions(item){
+	let placeholder = document.createElement("div");
+	placeholder.classList.add('placement');
+	item.parentNode.insertBefore(placeholder, item);
+}
+function addLastPosition(item){
+	let placeholder = document.createElement("div");
+	placeholder.classList.add('placement');	
+	item.append(placeholder);
+}	
+function addItemPlacements(items){
+	items.forEach(item => {		
+		addPositions(item);
+		addLastPosition(item);	
+	});
+}
+		
+let items = document.querySelectorAll('.item');
+
+addItemPlacements(items);
+
+items.forEach((item, index) => {
+	
+	item.addEventListener('dragstart', dragStart);
+	item.addEventListener('dragend', dragEnd);
+	item.addEventListener('mouseenter', (e) => {
+		e.target.classList.add("hoveringhighlight")
+    });
+	
+	item.addEventListener('mouseleave',(e) => {
+		e.target.classList.remove("hoveringhighlight")
+    }) ;
+});
+
+
+
+function dragStart(e) {
+    e.dataTransfer.setData('text/plain', e.target.id); 
+	e.target.classList.remove("hoveringhighlight");
+    setTimeout(() => {
+		e.target.classList.add('hide');
+		e.target.classList.remove("hoveringhighlight");
+		document.querySelectorAll('.item').forEach(e => e.classList.add('whiledragging'));
+		e.target.classList.remove('whiledragging');		
+		document.querySelectorAll('.placement').forEach(e => e.classList.add('whiledragging'));
+				
+    }, 1);	
+}
+
+function dragEnd(e) {
+	e.target.classList.remove('hide');
+	document.querySelectorAll('.placement').forEach(e => e.classList.remove('whiledragging'));
+	document.querySelectorAll('.item').forEach(e => e.classList.remove('whiledragging'));
+}
+
+
+const boxes = document.querySelectorAll('.box');
+
+boxes.forEach(box => {
+	if(!box.classList.contains('placement')){
+
+		addLastPosition(box);
+	}
+});
+
+
+/* drop targets */
+const placements = document.querySelectorAll('.placement');
+function addDropListeners(placements){
+	placements.forEach(placement => {
+		placement.addEventListener('dragenter', dragEnter)
+		placement.addEventListener('dragover', dragOver);
+		placement.addEventListener('dragleave', dragLeave);
+		placement.addEventListener('drop', drop);
+	});
+}
+addDropListeners(placements);
+
+
+function dragEnter(e) {
+    e.preventDefault();
+    e.target.classList.add('drag-over');
+}
+
+function dragOver(e) {    
+	e.preventDefault();
+	e.target.classList.add('drag-over');
+}
+
+function dragLeave(e) {
+    e.target.classList.remove('drag-over');
+}
+
+function drop(e) {
+
+	e.preventDefault();
+
+	const id = e.dataTransfer.getData('text/plain');
+	const draggable = document.getElementById(id);
+
+	e.target.classList.remove('drag-over');
+	
+	if(e.target.classList.contains('placement')){
+	
+		e.target.replaceWith(draggable);
+			
+		rebuildPlacements(e);
+
+	}else{
+		e.target.appendChild(draggable);	
+			rebuildPlacements(e);
+	}
+	draggable.classList.remove('hide');
+
+}
+
+function rebuildPlacements(e){
+	//clear placement fields
+	document.querySelectorAll('.placement').forEach(e => e.remove());	
+
+	items = document.querySelectorAll('.item');
+			
+	addItemPlacements(items);
+			
+	boxes.forEach(box => {
+		if(!box.classList.contains('placement')){
+			addLastPosition(box);
+		}	
+	});
+	addDropListeners(document.querySelectorAll('.placement'));
+
+}
+</script>
+</body>
+
+</html>
