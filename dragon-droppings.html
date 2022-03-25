@@ -17,55 +17,53 @@
     <h1>Dragon Droppings</h1>
 
     <div class="container">
+	
         <div class="box row">
-            <div class="item col-sm-6 col-lg-3">
+		    <div class="item col-sm-6 col-lg-3">
 				<p>lol</p>
-			</div>
-				
+			</div>				
 			<div class="item col-sm-6 col-lg-3">
-				<p>lol <span>2</span>
+				<p>lol 
+					<span>2</span>
 				</p>
 			</div>
         </div>
 			
         <div class="box row">
 			<div class="item col-sm-6 col-lg-3">lol 2.5
-			</div>			
-
+			</div>
 			<div class="item col-sm-6 col-lg-3">lol 3
 			</div>
         </div>
 		<div class="box row"></div>
+		
 	</div>
 		
     <div class="container">
-
 			
         <div class="box row">
 			<div class="item container">
 				<div class="item row">
-				 <div class="item col-sm-6 col-lg-3">
-					<p>col-sm-6 col-lg-3</p>
-				</div>
-					
-				<div class="item col-sm-6 col-lg-3">
-				<p>col-sm-6 col-lg-3</span>
-				</p>
-				</div>
+					<div class="item col-sm-6 col-lg-3">
+						<p>col-sm-6 col-lg-3</p>
+					</div>					
+					<div class="item col-sm-6 col-lg-3">
+						<p>col-sm-6 col-lg-3</span>
+						</p>
+					</div>
 				</div>
 			</div>				
         </div>
 		<div class="box row">
 			<div class="item card">
-			<div class="card-body">card</div>
+				<div class="card-body">card</div>
 			</div>		
 			<div class="item row">
 			</div>
         </div>
 
 
-
-
+	<!-- bootstrap 4 card deck with draggable capability added -->
 	<div class="box row">
 		<div class="item card-deck">
 		  <div class="item card">
@@ -99,9 +97,7 @@
 			</div>
 		  </div>
 		</div>
-
-</div>
-
+	</div>
 
 
 
@@ -270,20 +266,19 @@ function rebuildPlacements(){
 /* Tools */
 
 function addTools(el) {
-
-var div = document.createElement('div');
-div.className = 'itemtools';
-div.id = 'op';
-div.style.cssText = 'position: absolute; z-index: 10000; height: 16px; top:-16px; left:0px';
-div.innerHTML = '<span id="edit" data-edit="'+el.getAttribute("data-itemid")+'" >Edit Class</span> | <span data-edit="'+el.getAttribute("data-itemid")+'" id="clone">Clone</span> | <span id="delete">Delete</span>';
-div.addEventListener('click', editClass);
-el.prepend(div);
+	var div = document.createElement('div');
+	div.className = 'itemtools';
+	div.id = 'op';
+	div.style.cssText = 'position: absolute; z-index: 10000; height: 16px; top:-16px; left:0px';
+	div.innerHTML = '<span id="edit" data-edit="'+el.getAttribute("data-itemid")+'" >Edit Class</span> | <span data-edit="'+el.getAttribute("data-itemid")+'" id="clone">Clone</span> | <span id="delete">Delete</span>';
+	div.addEventListener('click', editClass);
+	el.prepend(div);
 }
 
 function editClass(e) {
 		
 	if(e.target.id =="edit"){
-let itemid = e.target.getAttribute("data-edit");
+		let itemid = e.target.getAttribute("data-edit");
 		let item = document.querySelectorAll("[data-itemid='"+itemid+"']")[0];
 		
 
@@ -330,13 +325,12 @@ let itemid = e.target.getAttribute("data-edit");
 
 
 function addBoxTools(el) {
-
-let div = document.createElement('div');
-div.className = 'boxtools';
-div.style.cssText = 'position: absolute; z-index: 10000; height: 16px; top:-16px; right:0px';
-div.innerHTML = '<span id="deleterow">Delete Row</span> | <span id="addrow">Add Row</span>';
-div.addEventListener('click', handleBoxToolsClick);
-el.prepend(div);
+	let div = document.createElement('div');
+	div.className = 'boxtools';
+	div.style.cssText = 'position: absolute; z-index: 10000; height: 16px; top:-16px; right:0px';
+	div.innerHTML = '<span id="deleterow">Delete Row</span> | <span id="addrow">Add Row</span>';
+	div.addEventListener('click', handleBoxToolsClick);
+	el.prepend(div);
 }
 function handleBoxToolsClick(e){
 	if(e.target.id =="addrow"){
@@ -344,8 +338,8 @@ function handleBoxToolsClick(e){
 		div.className = 'box row';
 		
 		e.target.parentNode.parentNode.parentNode.insertBefore(div,e.target.parentNode.parentNode);
-		 boxes = document.querySelectorAll('.box');
-		 addBoxListeners();
+		boxes = document.querySelectorAll('.box');
+		addBoxListeners();
 		rebuildPlacements();
 		
 	}else if(e.target.id =="deleterow"){
@@ -376,7 +370,6 @@ body{ box-sizing: border-box;}
 	min-height:20px; min-width:20px;
 	padding: 20px;
 }
-
 
 .placement { 
 	box-sizing: border-box;
