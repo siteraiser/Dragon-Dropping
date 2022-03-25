@@ -4,124 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dragon Droppings</title>
-<style>
-body{ box-sizing: border-box;}
+	
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+ 
+<link rel="preload" as="style" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin> 
+ 
 
-.drop-targets {    
-	width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 20px 0;
-}
-
-.box {
-   width: 100%;
-    border: solid 3px #ccc;
-    margin: 10px;
-	min-height:10px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-}
-.item{
-min-height:3px;
- transition: all 0.5s ease-out;
-}
-.box:hover .item{
-    border: solid 1px #ccc;
-    margin: 3px;
-}
-
-.placement { 
-	box-sizing: border-box;
-	width: auto;
-    background-color:#61ff2d;
-	min-height:0px;
-	display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: center;
-}
-
-.placement.whiledragging {
-	min-height:5px;min-width:5px;  
-}
-
-.hide + .placement {
-	min-height:0px; min-width:0px;
-}
-
-.item.whiledragging {
-	min-height:10px;   
-    background-color: aliceblue;
-	box-shadow: inset 0 0 5px #00f;
-	padding:3px;
-}
-
-.item.hoveringhighlight{ box-shadow: inset 0 0 10px #0f0;}
-
-.drag-over {
-    border: dashed 3px red;
-}
-
-.hide{
- display:none;
-}
-</style>
 </head>
 
 <body>
 
     <h1>Dragon Droppings</h1>
-    <div class="drop-targets">
-        <div class="box">
-            <div draggable="true" class="item" id="i1">
+
+    <div class="container">
+        <div class="box row">
+            <div class="item col-sm-6 col-lg-3">
 				<p>lol</p>
 			</div>
 				
-			<div draggable="true" class="item" id="i4">
+			<div class="item col-sm-6 col-lg-3">
 				<p>lol <span>2</span>
 				</p>
 			</div>
         </div>
 			
-        <div class="box">
-			<div draggable="true" class="item" id="i2">lol 2.5
+        <div class="box row">
+			<div class="item col-sm-6 col-lg-3">lol 2.5
 			</div>			
-        </div>
-		<div class="box">
-			<div draggable="true" class="item" id="i3">lol 3
+
+			<div class="item col-sm-6 col-lg-3">lol 3
 			</div>
         </div>
-		<div class="box"></div>
+		<div class="box row"></div>
 	</div>
 		
-    <div class="drop-targets">
-        <div class="box">
-            <div draggable="true" class="item" id="i5">
-				<p>lol</p>
-            </div>
-				
-			<div draggable="true" class="item" id="i6">
-			<p>lol <span>2</span>
-			</p>
-			</div>
-        </div>
+    <div class="container">
+
 			
-        <div class="box">
-			<div draggable="true" class="item" id="i7">
-			</div>		
+        <div class="box row">
+			<div class="item container">
+				<div class="item row">
+				 <div class="item col-sm-6 col-lg-3">
+					<p>col-sm-6 col-lg-3</p>
+				</div>
+					
+				<div class="item col-sm-6 col-lg-3">
+				<p>col-sm-6 col-lg-3</span>
+				</p>
+				</div>
+				</div>
+			</div>				
         </div>
-		<div class="box">
-			<div draggable="true" class="item" id="i8">lol 3
+		<div class="box row">
+			<div class="item card">
+			<div class="card-body">card</div>
+			</div>		
+			<div class="item row">
 			</div>
         </div>
 
 
-	</div>		
-		
-		
+
+
+	<div class="box row">
+		<div class="item card-deck">
+		  <div class="item card">
+			<img class="card-img-top" src="..." alt="Card image cap">
+			<div class="item card-body">
+			  <h5 class="card-title">Card title</h5>
+			  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+			</div>
+			<div class="item card-footer">
+			  <small class="text-muted">Last updated 3 mins ago</small>
+			</div>
+		  </div>
+		  <div class="item card">
+			<img class="card-img-top" src="..." alt="Card image cap">
+			<div class="item card-body">
+			  <h5 class="card-title">Card title</h5>
+			  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+			</div>
+			<div class="item card-footer">
+			  <small class="text-muted">Last updated 3 mins ago</small>
+			</div>
+		  </div>
+		  <div class="item card">
+			<img class="card-img-top" src="..." alt="Card image cap">
+			<div  class="item card-body">
+			  <h5 class="card-title">Card title</h5>
+			  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+			</div>
+			<div class="item card-footer">
+			  <small class="text-muted">Last updated 3 mins ago</small>
+			</div>
+		  </div>
+		</div>
+
+</div>
+
+
+
+
+</div>	
+
+	
+	
 <script>
 
 function addPositions(item){
@@ -145,23 +132,40 @@ let items = document.querySelectorAll('.item');
 
 addItemPlacements(items);
 
-items.forEach((item, index) => {
-	
-	item.addEventListener('dragstart', dragStart);
-	item.addEventListener('dragend', dragEnd);
-	item.addEventListener('mouseenter', (e) => {
-		e.target.classList.add("hoveringhighlight")
-    });
-	
-	item.addEventListener('mouseleave',(e) => {
-		e.target.classList.remove("hoveringhighlight")
-    }) ;
-});
+
+let dataitemid = 0;
+
+
+
+
+function setItemListeners(item){
+	items.forEach((item, index) => {
+		item.setAttribute ("draggable",true)
+		item.setAttribute ("data-itemid",dataitemid++)
+		item.addEventListener('dragstart', dragStart);
+		item.addEventListener('dragend', dragEnd);
+		item.addEventListener('mouseenter', (e) => {	
+			e.target.classList.add("hoveringhighlight");
+			document.querySelectorAll('.itemtools').forEach(e => e.remove());	
+			addTools(e.target);
+		});
+		
+		item.addEventListener('mouseleave',(e) => {
+			e.target.classList.remove("hoveringhighlight");
+			document.querySelectorAll('.itemtools').forEach(e => e.remove());	
+			addTools(e.target);
+			
+		});
+
+	});
+
+}
+setItemListeners();
 
 
 
 function dragStart(e) {
-    e.dataTransfer.setData('text/plain', e.target.id); 
+    e.dataTransfer.setData('text/plain', e.target.getAttribute ("data-itemid")); 
 	e.target.classList.remove("hoveringhighlight");
     setTimeout(() => {
 		e.target.classList.add('hide');
@@ -179,19 +183,30 @@ function dragEnd(e) {
 	document.querySelectorAll('.item').forEach(e => e.classList.remove('whiledragging'));
 }
 
-
-const boxes = document.querySelectorAll('.box');
-
-boxes.forEach(box => {
-	if(!box.classList.contains('placement')){
-
-		addLastPosition(box);
-	}
-});
+/* boxes / rows */
+let boxes = document.querySelectorAll('.box');
+function addBoxListeners(){
+	boxes.forEach(box => {
+		if(!box.classList.contains('placement')){
+			addLastPosition(box);
+		}
+		
+		box.addEventListener('mouseenter',(e) => {		
+			addBoxTools(e.target);	
+		});	
+		box.addEventListener('mouseleave',(e) => {		
+			document.querySelectorAll('.itemtools').forEach(e => e.remove());	
+			document.querySelectorAll('.boxtools').forEach(e => e.remove());	
+			
+		});
+		
+	});
+}
+addBoxListeners();
 
 
 /* drop targets */
-const placements = document.querySelectorAll('.placement');
+let placements = document.querySelectorAll('.placement');
 function addDropListeners(placements){
 	placements.forEach(placement => {
 		placement.addEventListener('dragenter', dragEnter)
@@ -220,34 +235,27 @@ function dragLeave(e) {
 function drop(e) {
 
 	e.preventDefault();
-
-	const id = e.dataTransfer.getData('text/plain');
-	const draggable = document.getElementById(id);
-
+	const itemid = e.dataTransfer.getData('text/plain');	
+	
+	const draggable = document.querySelectorAll("[data-itemid='"+itemid+"']")[0];
 	e.target.classList.remove('drag-over');
 	
-	if(e.target.classList.contains('placement')){
-	
-		e.target.replaceWith(draggable);
-			
-		rebuildPlacements(e);
-
+	if(e.target.classList.contains('placement')){	
+		e.target.replaceWith(draggable);			
+		rebuildPlacements();
 	}else{
 		e.target.appendChild(draggable);	
-			rebuildPlacements(e);
+		rebuildPlacements();
 	}
 	draggable.classList.remove('hide');
 
 }
 
-function rebuildPlacements(e){
+function rebuildPlacements(){
 	//clear placement fields
 	document.querySelectorAll('.placement').forEach(e => e.remove());	
-
-	items = document.querySelectorAll('.item');
-			
-	addItemPlacements(items);
-			
+	items = document.querySelectorAll('.item');			
+	addItemPlacements(items);			
 	boxes.forEach(box => {
 		if(!box.classList.contains('placement')){
 			addLastPosition(box);
@@ -256,7 +264,156 @@ function rebuildPlacements(e){
 	addDropListeners(document.querySelectorAll('.placement'));
 
 }
+
+
+
+/* Tools */
+
+function addTools(el) {
+
+var div = document.createElement('div');
+div.className = 'itemtools';
+div.id = 'op';
+div.style.cssText = 'position: absolute; z-index: 10000; height: 16px; top:-16px; left:0px';
+div.innerHTML = '<span id="edit" data-edit="'+el.getAttribute("data-itemid")+'" >Edit Class</span> | <span data-edit="'+el.getAttribute("data-itemid")+'" id="clone">Clone</span> | <span id="delete">Delete</span>';
+div.addEventListener('click', editClass);
+el.prepend(div);
+}
+
+function editClass(e) {
+		
+	if(e.target.id =="edit"){
+let itemid = e.target.getAttribute("data-edit");
+		let item = document.querySelectorAll("[data-itemid='"+itemid+"']")[0];
+		
+
+		let classes=[];
+		let keepclasses=[];
+		for (let cssClass of item.classList) {
+			if(cssClass !=="item" && cssClass !=="hoveringhighlight"){
+				
+				classes.push(cssClass);
+				
+			}else{
+				keepclasses.push(cssClass);
+			}
+		}
+		var a = prompt("Edit CSS", classes.join(" "));  
+		if (a != null) {  
+			classes.forEach(cssclass => {
+				item.classList.remove(cssclass);
+			});
+
+			a.split(" ").forEach(newclass => {
+				item.classList.add(newclass);
+			});
+		}
+	}else if(e.target.id =="delete"){
+		e.target.parentNode.parentNode.remove();
+	
+	}else{
+		let itemid = e.target.getAttribute("data-edit");
+		let item = document.querySelectorAll("[data-itemid='"+itemid+"']")[0];
+		let newItem = item.cloneNode(true);
+		
+	
+		item.parentNode.insertBefore(newItem,item);
+		items = document.querySelectorAll('.item');
+		setItemListeners(newItem);
+		rebuildPlacements();
+		
+	}
+
+}
+
+
+
+
+function addBoxTools(el) {
+
+let div = document.createElement('div');
+div.className = 'boxtools';
+div.style.cssText = 'position: absolute; z-index: 10000; height: 16px; top:-16px; right:0px';
+div.innerHTML = '<span id="deleterow">Delete Row</span> | <span id="addrow">Add Row</span>';
+div.addEventListener('click', handleBoxToolsClick);
+el.prepend(div);
+}
+function handleBoxToolsClick(e){
+	if(e.target.id =="addrow"){
+		let div = document.createElement('div');		
+		div.className = 'box row';
+		
+		e.target.parentNode.parentNode.parentNode.insertBefore(div,e.target.parentNode.parentNode);
+		 boxes = document.querySelectorAll('.box');
+		 addBoxListeners();
+		rebuildPlacements();
+		
+	}else if(e.target.id =="deleterow"){
+		e.target.parentNode.parentNode.remove();
+	}
+}
 </script>
+
+
+
+
+
+<style>
+body{ box-sizing: border-box;}
+
+.box {
+	position:relative;
+    border: solid 3px #ccc; 
+	min-height:10px;
+}
+.item{
+	position:relative;
+	min-height:10px;
+	transition: all 0.5s ease-out 0.25s;
+}
+.box:hover .item{
+	box-shadow: inset 1px 0 2px #000;
+	min-height:20px; min-width:20px;
+	padding: 20px;
+}
+
+
+.placement { 
+	box-sizing: border-box;
+	width: auto;
+    background-color:#61ff2d;
+	min-height:0px;
+}
+
+.placement.whiledragging {
+	min-height:10px;min-width:10px; 
+    position: relative;
+    left: 10px;
+    margin-left: -10px;	
+	z-index:1000;
+}
+
+.hide + .placement {
+	min-height:0px; min-width:0px;
+}
+
+.item.whiledragging {
+	min-height:10px;   
+    background-color: aliceblue;
+	box-shadow: inset 0 0 5px #00f;
+	padding:3px;
+}
+
+.box .item.hoveringhighlight{ box-shadow: inset 0 0 10px #0f0;}
+
+.drag-over {
+	background-color:red;
+}
+
+.hide{
+ display:none !important;
+}
+</style>
 </body>
 
 </html>
